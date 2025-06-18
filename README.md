@@ -1,5 +1,5 @@
-# Khaled Image Classifer
-An Image classifier module using three different ways in AI, Decision Tree, Naive Bayes, and Feedforward Neural Networks, this project is for university and part of ENCS3340 Course
+# Animals Image Classifer
+An Image classifier module using three different ways in AI, Decision Tree, Naive Bayes, and Feedforward Neural Networks, using scikit-learn modules, this project is for university and part of ENCS3340 Course
 
 ## Table Of Contents
 - [Project Descriprion](#Project-Descriprion)
@@ -9,11 +9,16 @@ An Image classifier module using three different ways in AI, Decision Tree, Naiv
 - [Contributers](#Contributers)
 
 ## Project Descriprion
+#### ...
 
 ## Feedforward Neural Networks Approach
+#### ...
 
 ## Decision Tree Approach
+#### ...
 
 ## Naive Bayes Approach
+#### ...
 
 ## Contributers
+#### ...
