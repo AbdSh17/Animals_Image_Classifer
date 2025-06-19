@@ -5,8 +5,6 @@ import numpy as np
 import joblib
 import pickle
 import matplotlib.pyplot as plt
-from collections import Counter
-
 
 def extract_combined_features(image_path, image_size=(64, 64)):
     try:
@@ -53,32 +51,29 @@ def main():
 
     image = np.array([features]) # convert it ti numpy array, the way that module deal with photos
 
+    scaler = joblib.load("NB_scaler.pkl") # import the same scaler
+    model = joblib.load("NB_model.pkl") # import the module
+
+    image_scaled = scaler.transform(image) # transform the np array
+
+    prediction = model.predict(image_scaled) # do the prediction
+
     # Load the labels
     with open("../label_map.pkl", "rb") as f:
         label_map = pickle.load(f)
 
-    predicted_class = []
-    for fold in range(1,6):
-        scaler = joblib.load(f"NB_scaler{fold}.pkl")  # import the same scaler
-        model = joblib.load(f"NB_model{fold}.pkl")  # import the module
-        image_scaled = scaler.transform(image)  # transform the np array
-
-        prediction = model.predict(image_scaled)  # do the prediction
-        predicted_class.append(label_map[prediction[0]])
-
-    most_common_class = Counter(predicted_class).most_common(1)[0][0]
+    predicted_class = label_map[prediction[0]]
 
     # ===== Show the image with label =====
     plt.figure(figsize=(16, 8))
     plt.imshow(display_img)
-    plt.title(f"Label: {most_common_class}", fontsize=30)  # Increase fontsize here
+    plt.title(f"Label: {predicted_class}", fontsize=30)  # Increase fontsize here
     plt.axis('off')
     plt.tight_layout()
     plt.show()
     # ===== Show the image with label =====
 
-    print(f"All predictions: {predicted_class}")
-    print(f"The prediction is: {most_common_class}")
+    print(f"The prediction is: {predicted_class}")
 
 if __name__ == '__main__':
     main()
